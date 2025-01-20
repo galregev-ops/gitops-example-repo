@@ -29,8 +29,8 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/your-org/argocd-applications
-        targetRevision: HEAD
+        repoURL: https://github.com/galregev-ops/gitops-example-repo
+        targetRevision: main
         chart: '{{chartPath}}'
         helm:
           valueFiles:
