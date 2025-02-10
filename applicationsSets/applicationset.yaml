@@ -31,7 +31,7 @@ spec:
       source:
         repoURL: https://github.com/galregev-ops/gitops-example-repo
         targetRevision: main
-        chart: '{{chartPath}}'
+        path: '{{chartPath}}'
         helm:
           valueFiles:
             - '{{valuesFile}}'
