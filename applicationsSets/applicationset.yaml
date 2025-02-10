@@ -19,10 +19,10 @@ spec:
               elements:
                 - chart: core
                   chartPath: charts/core
-                  valuesFile: environments/{{name}}/core-values.yaml
+                  valuesFile: ../../environments/{{name}}/core-values.yaml
                 - chart: spaces
                   chartPath: charts/spaces
-                  valuesFile: environments/{{name}}/spaces-values.yaml
+                  valuesFile: ../../environments/{{name}}/spaces-values.yaml
   template:
     metadata:
       name: '{{chart}}-{{name}}'
@@ -42,3 +42,5 @@ spec:
         automated:
           prune: true
           selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
