@@ -9,10 +9,10 @@ spec:
     repoURL: https://argoproj.github.io/argo-helm
     chart: argo-cd
     targetRevision: 6.7.6
-    # helm:
-    #   helmOptions:
-    #     - "--values"
-    #     - "environments/argocd-values.yaml"
+    helm:
+      helmOptions:
+        - "--values"
+        - "environments/argocd-values.yaml"
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
