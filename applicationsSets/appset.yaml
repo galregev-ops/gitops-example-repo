@@ -39,6 +39,8 @@ spec:
   template:
     metadata:
       name: '{{chart}}-{{name}}-{{subenv}}-{{region}}'
+      annotations:
+        argocd.argoproj.io/refresh: "hard"
     spec:
       project: default
       source:
