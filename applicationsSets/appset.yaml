@@ -7,24 +7,26 @@ spec:
   generators:
     - matrix:
         generators:
-          - list:
-              elements:
-                - name: dev
-                  namespace: dev
-                - name: stage
-                  namespace: stage
-                - name: prod
-                  namespace: prod
-          - list:
-              elements:
-                - chart: core
-                  chartPath: charts/core
-                - chart: spaces
-                  chartPath: charts/spaces
-                - chart: monitoring
-                  chartPath: charts/monitoring
-                - chart: database
-                  chartPath: charts/database
+          - matrix:
+              generators:
+                - list:
+                    elements:
+                      - name: dev
+                        namespace: dev
+                      - name: stage
+                        namespace: stage
+                      - name: prod
+                        namespace: prod
+                - list:
+                    elements:
+                      - chart: core
+                        chartPath: charts/core
+                      - chart: spaces
+                        chartPath: charts/spaces
+                      - chart: monitoring
+                        chartPath: charts/monitoring
+                      - chart: database
+                        chartPath: charts/database
           - list:
               elements:
                 - subenv: inst03
@@ -41,7 +43,7 @@ spec:
         path: '{{chartPath}}'
         helm:
           valueFiles:
-            - '../../environments/{{name}}/{{subenv}}/values.yaml'  # Deploy only US
+            - '../../environments/{{name}}/{{subenv}}/values.yaml'
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{namespace}}'
