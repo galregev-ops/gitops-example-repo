@@ -26,9 +26,17 @@ spec:
           - list:
               elements:
                 - subenv: inst03
+                # - subenv: inst06
+                # - subenv: inst07
+          - list:
+              elements:
+                - region: us
+                - region: eu
+                - region: pr
+                - region: au
   template:
     metadata:
-      name: '{{chart}}-{{name}}-{{subenv}}'
+      name: '{{chart}}-{{name}}-{{subenv}}-{{region}}'
     spec:
       project: default
       source:
@@ -37,7 +45,9 @@ spec:
         path: '{{chartPath}}'
         helm:
           valueFiles:
-            - '../../environments/{{name}}/{{subenv}}/values.yaml'
+            - '../../environments/{{name}}/defaults.yaml'  # Global defaults
+            # - '../../environments/{{name}}/region-{{region}}.yaml'  # Regional overrides
+            - '../../environments/{{name}}/{{subenv}}/values.yaml'  # Instance-specific overrides
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{namespace}}'
