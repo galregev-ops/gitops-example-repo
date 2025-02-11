@@ -16,7 +16,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/galregev-ops/gitops-example-repo.git
+        repoURL: https://github.com/galregev-ops/gitops-example-repo
         targetRevision: main
         path: 'charts/spaces'
         helm:
