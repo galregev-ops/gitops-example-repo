@@ -10,8 +10,9 @@ spec:
     chart: argo-cd
     targetRevision: 6.7.6
     helm:
-      valueFiles:
-        - environments/argocd-values.yaml
+      helmOptions:
+        - "--values"
+        - "environments/argocd-values.yaml"
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
