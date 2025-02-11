@@ -9,17 +9,17 @@ spec:
   generators:
   - git:
       repoURL: https://github.com/galregev-ops/gitops-example-repo.git
-      revision: HEAD
+      revision: main
       directories:
       - path: cluster-addons/*
   template:
     metadata:
       name: '{{.path.basename}}'
     spec:
-      project: "my-project"
+      project: "default"
       source:
         repoURL: https://github.com/galregev-ops/gitops-example-repo.git
-        targetRevision: HEAD
+        targetRevision: main
         path: '{{.path.path}}'
       destination:
         server: https://kubernetes.default.svc
