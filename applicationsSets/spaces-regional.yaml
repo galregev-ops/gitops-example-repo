@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: sysaid-spaces-regional
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - region: us-east-1
+          - region: eu-west-1
+          - region: eu-central-1
+  template:
+    metadata:
+      name: 'spaces-{{region}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/sysaid/gitops-repo
+        targetRevision: main
+        path: 'charts/spaces'
+        helm:
+          valueFiles:
+            - '../../environments/global-values.yaml'
+            - '../../environments/regions/{{region}}.yaml'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: 'spaces'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true

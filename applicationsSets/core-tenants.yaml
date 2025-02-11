@@ -1,0 +1,40 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: sysaid-core-tenants
+  namespace: argocd
+spec:
+  generators:
+    - matrix:
+        generators:
+          - list:
+              elements:
+                - region: us-east-1
+                - region: eu-west-1
+                - region: eu-central-1
+          - list:
+              elements:
+                - tenant: inst04us
+                - tenant: inst15eu
+                - tenant: inst80ca
+  template:
+    metadata:
+      name: '{{tenant}}-{{region}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/galregev-ops/gitops-example-repo.git
+        targetRevision: main
+        path: 'charts/core'
+        helm:
+          valueFiles:
+            - '../../environments/global-values.yaml'
+            - '../../environments/regions/{{region}}.yaml'
+            - '../../environments/tenants/{{tenant}}-values.yaml'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{tenant}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true

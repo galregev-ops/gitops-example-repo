@@ -48,9 +48,10 @@ spec:
         helm:
           ignoreMissingValueFiles: true
           valueFiles:
-            - '../../environments/{{name}}/defaults.yaml'  # Global defaults
-            # - '../../environments/{{name}}/region-{{region}}.yaml'  # Regional overrides
-            - '../../environments/{{name}}/{{subenv}}/values.yaml'  # Instance-specific overrides
+            - '../../environments/global-values.yaml'
+            - '../../environments/regions/{{region}}.yaml'
+            - '../../environments/{{environment}}/common-values.yaml'
+            - '../../environments/{{environment}}/{{chart}}-values.yaml'
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{namespace}}'
