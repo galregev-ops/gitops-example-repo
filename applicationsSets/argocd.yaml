@@ -6,12 +6,12 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://argoproj.github.io/argo-helm
+    repoURL: https://github.com/galregev-ops/gitops-example-repo.git
     chart: argo-cd
     targetRevision: 6.7.6  # Use a stable version
     helm:
       valueFiles:
-        - ../../environments/argocd-values.yaml
+        - environments/argocd-values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
