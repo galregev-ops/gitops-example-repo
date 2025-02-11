@@ -5,6 +5,7 @@ metadata:
   labels:
     {{- include "spaces.labels" . | nindent 4 }}
     stage: {{ .Values.stage | default "un-specified" }}
+    instance: {{ .Values.inst | default "un-specified" }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
