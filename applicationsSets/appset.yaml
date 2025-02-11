@@ -23,17 +23,19 @@ spec:
                         chartPath: charts/core
                       - chart: spaces
                         chartPath: charts/spaces
-          - list:
-              elements:
-                - subenv: inst03
-                # - subenv: inst06
-                # - subenv: inst07
-          - list:
-              elements:
-                - region: us
-                - region: eu
-                - region: pr
-                - region: au
+          - matrix:
+              generators:
+                - list:
+                    elements:
+                      - subenv: inst03
+                      # - subenv: inst06
+                      # - subenv: inst07
+                - list:
+                    elements:
+                      - region: us
+                      - region: eu
+                      - region: pr
+                      - region: au
   template:
     metadata:
       name: '{{chart}}-{{name}}-{{subenv}}-{{region}}'
@@ -44,6 +46,7 @@ spec:
         targetRevision: main
         path: '{{chartPath}}'
         helm:
+          ignoreMissingValueFiles: true
           valueFiles:
             - '../../environments/{{name}}/defaults.yaml'  # Global defaults
             # - '../../environments/{{name}}/region-{{region}}.yaml'  # Regional overrides
