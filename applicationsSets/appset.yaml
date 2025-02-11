@@ -23,10 +23,6 @@ spec:
                         chartPath: charts/core
                       - chart: spaces
                         chartPath: charts/spaces
-                      - chart: monitoring
-                        chartPath: charts/monitoring
-                      - chart: database
-                        chartPath: charts/database
           - list:
               elements:
                 - subenv: inst03
