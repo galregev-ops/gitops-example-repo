@@ -55,7 +55,7 @@ spec:
             - '../../environments/{{name}}/{{subenv}}/values.yaml'  # Instance-specific overrides
           parameters:
             - name: "argocd-source-hash"
-              value: "{{`{{ .Values | toJson | sha256sum }}`}}"
+              value: "{{`{{ .Files.Get \"../../environments/{{name}}/{{subenv}}/values.yaml\" | sha256sum }}`}}"
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{namespace}}'
