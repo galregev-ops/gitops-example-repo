@@ -2,3 +2,4 @@ key: value
 inst: inst03
 env: dev
 product: core-classic
+additional: additional-value
