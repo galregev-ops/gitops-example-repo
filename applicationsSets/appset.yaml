@@ -1,0 +1,53 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: product-applicationset
+  namespace: argocd
+spec:
+  generators:
+    - matrix:
+        generators:
+          - list:
+              elements:
+                - name: dev
+                  namespace: dev
+                - name: stage
+                  namespace: stage
+                - name: prod
+                  namespace: prod
+          - list:
+              elements:
+                - chart: core
+                  chartPath: charts/core
+                - chart: spaces
+                  chartPath: charts/spaces
+                - chart: monitoring
+                  chartPath: charts/monitoring
+                - chart: database
+                  chartPath: charts/database
+          - list:
+              elements:
+                - subenv: inst03
+                - subenv: inst06
+                - subenv: inst07
+  template:
+    metadata:
+      name: '{{chart}}-{{name}}-{{subenv}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/galregev-ops/gitops-example-repo
+        targetRevision: main
+        path: '{{chartPath}}'
+        helm:
+          valueFiles:
+            - '../../environments/{{name}}/{{subenv}}/values.yaml'  # Deploy only US
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{namespace}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
