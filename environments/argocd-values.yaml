@@ -6,7 +6,7 @@ configs:
     server.insecure: true
 
   cm:
-    application.instanceLabelKey: argocd.argoproj.io/instance
+    # application.instanceLabelKey: argocd.argoproj.io/instance
 
 server:
 
