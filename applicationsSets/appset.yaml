@@ -13,10 +13,10 @@ spec:
                     elements:
                       - name: dev
                         namespace: dev
-                      - name: stage
-                        namespace: stage
-                      - name: prod
-                        namespace: prod
+                      # - name: stage
+                      #   namespace: stage
+                      # - name: prod
+                      #   namespace: prod
                 - list:
                     elements:
                       - chart: core
