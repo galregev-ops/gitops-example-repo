@@ -12,7 +12,7 @@ server:
 
   autoscaling:
     enabled: true
-    minReplicas: 2
+    minReplicas: 1
 
   extraArgs:
     - --insecure
@@ -22,8 +22,6 @@ server:
     #   kubernetes.io/ingress.class: alb
     # hosts:
     #   - argocd.example.com
-  config:
-    url: http://localhost:8080
 
 ## Custom resource configuration
 crds:
