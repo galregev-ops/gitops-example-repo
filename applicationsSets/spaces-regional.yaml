@@ -16,7 +16,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/sysaid/gitops-repo
+        repoURL: https://github.com/galregev-ops/gitops-example-repo.git
         targetRevision: main
         path: 'charts/spaces'
         helm:
