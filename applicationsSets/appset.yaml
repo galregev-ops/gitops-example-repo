@@ -26,8 +26,6 @@ spec:
           - list:
               elements:
                 - subenv: inst03
-                - subenv: inst06
-                - subenv: inst07
   template:
     metadata:
       name: '{{chart}}-{{name}}-{{subenv}}'
