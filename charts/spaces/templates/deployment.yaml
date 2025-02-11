@@ -4,7 +4,7 @@ metadata:
   name: {{ include "spaces.fullname" . }}
   labels:
     {{- include "spaces.labels" . | nindent 4 }}
-    {{ .Values.stage | default "un-specified" }}
+    stage: {{ .Values.stage | default "un-specified" }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
