@@ -4,7 +4,7 @@ metadata:
   name: {{ include "core.fullname" . }}
   labels:
     {{- include "core.labels" . | nindent 4 }}
-      product: {{ .Values.product | default "none" }}
+    product: {{ .Values.product | default "none" }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
