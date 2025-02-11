@@ -53,9 +53,6 @@ spec:
             - '../../environments/{{name}}/defaults.yaml'  # Global defaults
             # - '../../environments/{{name}}/region-{{region}}.yaml'  # Regional overrides
             - '../../environments/{{name}}/{{subenv}}/values.yaml'  # Instance-specific overrides
-          parameters:
-            - name: "argocd-source-hash"
-              value: "{{`{{ .Files.Get \"../../environments/{{name}}/{{subenv}}/values.yaml\" | sha256sum }}`}}"
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{namespace}}'
