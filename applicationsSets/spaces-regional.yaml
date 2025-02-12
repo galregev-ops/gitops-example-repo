@@ -22,7 +22,8 @@ spec:
         helm:
           valueFiles:
             - '../../environments/global-values.yaml'
-            - '../../environments/regions/{{region}}.yaml'
+            - '../../environments/regions/{{region}}/regional-values.yaml'
+            - '../../environments/regions/{{region}}/spaces/values.yaml'
       destination:
         server: https://kubernetes.default.svc
         namespace: 'spaces'
