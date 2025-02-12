@@ -29,7 +29,7 @@ spec:
         helm:
           valueFiles:
             - '../../environments/global-values.yaml'
-            - '../../environments/regions/{{region}}.yaml'
+            - '../../environments/regions/{{region}}/regional-values.yaml'
             - '../../environments/tenants/{{tenant}}-values.yaml'
       destination:
         server: https://kubernetes.default.svc
