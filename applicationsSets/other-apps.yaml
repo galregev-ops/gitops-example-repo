@@ -1,63 +1,63 @@
-apiVersion: argoproj.io/v1alpha1
-kind: ApplicationSet
-metadata:
-  name: product-applicationset
-  namespace: argocd
-spec:
-  generators:
-    - matrix:
-        generators:
-          - matrix:
-              generators:
-                - list:
-                    elements:
-                      - name: dev
-                        namespace: dev
-                      # - name: stage
-                      #   namespace: stage
-                      # - name: prod
-                      #   namespace: prod
-                - list:
-                    elements:
-                      - chart: core
-                        chartPath: charts/core
-                      - chart: spaces
-                        chartPath: charts/spaces
-          - matrix:
-              generators:
-                - list:
-                    elements:
-                      - subenv: inst03
-                      # - subenv: inst06
-                      # - subenv: inst07
-                - list:
-                    elements:
-                      - region: us
-                      - region: eu
-                      - region: pr
-                      - region: au
-  template:
-    metadata:
-      name: '{{chart}}-{{name}}-{{subenv}}-{{region}}'
-    spec:
-      project: default
-      source:
-        repoURL: https://github.com/galregev-ops/gitops-example-repo
-        targetRevision: main
-        path: '{{chartPath}}'
-        helm:
-          ignoreMissingValueFiles: true
-          valueFiles:
-            - '../../environments/global-values.yaml'
-            - '../../environments/regions/{{region}}.yaml'
-            - '../../environments/{{environment}}/common-values.yaml'
-            - '../../environments/{{environment}}/{{chart}}-values.yaml'
-      destination:
-        server: https://kubernetes.default.svc
-        namespace: '{{namespace}}'
-      syncPolicy:
-        automated:
-          prune: true
-          selfHeal: true
-        syncOptions:
-          - CreateNamespace=true
+# apiVersion: argoproj.io/v1alpha1
+# kind: ApplicationSet
+# metadata:
+#   name: product-applicationset
+#   namespace: argocd
+# spec:
+#   generators:
+#     - matrix:
+#         generators:
+#           - matrix:
+#               generators:
+#                 - list:
+#                     elements:
+#                       - name: dev
+#                         namespace: dev
+#                       # - name: stage
+#                       #   namespace: stage
+#                       # - name: prod
+#                       #   namespace: prod
+#                 - list:
+#                     elements:
+#                       - chart: core
+#                         chartPath: charts/core
+#                       - chart: spaces
+#                         chartPath: charts/spaces
+#           - matrix:
+#               generators:
+#                 - list:
+#                     elements:
+#                       - subenv: inst03
+#                       # - subenv: inst06
+#                       # - subenv: inst07
+#                 - list:
+#                     elements:
+#                       - region: us
+#                       - region: eu
+#                       - region: pr
+#                       - region: au
+#   template:
+#     metadata:
+#       name: '{{chart}}-{{name}}-{{subenv}}-{{region}}'
+#     spec:
+#       project: default
+#       source:
+#         repoURL: https://github.com/galregev-ops/gitops-example-repo
+#         targetRevision: main
+#         path: '{{chartPath}}'
+#         helm:
+#           ignoreMissingValueFiles: true
+#           valueFiles:
+#             - '../../environments/global-values.yaml'
+#             - '../../environments/regions/{{region}}.yaml'
+#             - '../../environments/{{environment}}/common-values.yaml'
+#             - '../../environments/{{environment}}/{{chart}}-values.yaml'
+#       destination:
+#         server: https://kubernetes.default.svc
+#         namespace: '{{namespace}}'
+#       syncPolicy:
+#         automated:
+#           prune: true
+#           selfHeal: true
+#         syncOptions:
+#           - CreateNamespace=true
