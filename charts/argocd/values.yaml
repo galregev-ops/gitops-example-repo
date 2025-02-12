@@ -1,0 +1,11 @@
+controller:
+  replicas: 1
+
+repoServer:
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+
+server:
+  ingress:
+    enabled: false
