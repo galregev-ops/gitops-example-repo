@@ -28,9 +28,9 @@ spec:
         path: 'charts/core'
         helm:
           valueFiles:
-            - 'environments/global-values.yaml'
-            - 'environments/regions/{{region}}.yaml'
-            - 'environments/tenants/{{tenant}}-values.yaml'
+            - '../../environments/global-values.yaml'
+            - '../../environments/regions/{{region}}.yaml'
+            - '../../environments/tenants/{{tenant}}-values.yaml'
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{tenant}}'
