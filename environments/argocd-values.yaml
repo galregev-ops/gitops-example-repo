@@ -1,29 +1,29 @@
-# global:
-#   # domain: localhost:8080
+# # global:
+# #   # domain: localhost:8080
 
-configs:
-  params:
-    server.insecure: false
+# configs:
+#   params:
+#     server.insecure: false
 
-#   cm:
-#     # application.instanceLabelKey: argocd.argoproj.io/instance
+# #   cm:
+# #     # application.instanceLabelKey: argocd.argoproj.io/instance
 
-server:
+# server:
 
-  # autoscaling:
-  #   enabled: true
-  #   minReplicas: 1
+#   # autoscaling:
+#   #   enabled: true
+#   #   minReplicas: 1
 
-  # extraArgs:
-  #   - --insecure
-  ingress:
-    enabled: false
-    # annotations:
-    #   kubernetes.io/ingress.class: alb
-    # hosts:
-    #   - argocd.example.com
+#   # extraArgs:
+#   #   - --insecure
+#   ingress:
+#     enabled: false
+#     # annotations:
+#     #   kubernetes.io/ingress.class: alb
+#     # hosts:
+#     #   - argocd.example.com
 
-## Custom resource configuration
-crds:
-  # -- Install and upgrade CRDs
-  install: true
+# ## Custom resource configuration
+# crds:
+#   # -- Install and upgrade CRDs
+#   install: true
