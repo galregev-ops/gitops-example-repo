@@ -12,16 +12,16 @@ spec:
         - path: microservices/*/values/*
   template:
     metadata:
-      name: "{{path[1]}}-{{path[2]}}"
+      name: "{{path[0]}}-{{path[1]}}"
     spec:
       project: default
       source:
         repoURL: https://github.com/galregev-ops/gitops-example-repo.git
         targetRevision: main
-        path: "microservices/{{path[1]}}"
+        path: "microservices/{{path[0]}}"
         helm:
           valueFiles:
-            - "microservices/{{path[1]}}/values/{{path[2]}}.yaml"
+            - "microservices/{{path[0]}}/values/{{path[1]}}.yaml"
       destination:
         server: https://kubernetes.default.svc
         namespace: "{{path[1]}}"
