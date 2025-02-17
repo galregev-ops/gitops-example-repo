@@ -1,15 +1,11 @@
 controller:
-  replicas: 2
+  replicas: 1
 
 repoServer:
   autoscaling:
     enabled: true
-    minReplicas: 2
+    minReplicas: 1
 
 server:
   ingress:
     enabled: false
-
-redisSecretInit:
-  podLabels:
-    sidecar.istio.io/inject: "false"
