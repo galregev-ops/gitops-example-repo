@@ -9,7 +9,7 @@ spec:
         repoURL: https://github.com/galregev-ops/gitops-example-repo.git
         revision: main
         directories:
-          - path: microservices/*/values/*
+        - path: microservices/*/values/*
   template:
     metadata:
       name: "{{path[1]}}-{{path[2]}}"
