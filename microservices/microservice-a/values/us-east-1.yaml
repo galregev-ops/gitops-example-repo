@@ -1,0 +1,2 @@
+env:
+  REDIS_HOST: redis.us-east-1.amazonaws.com
