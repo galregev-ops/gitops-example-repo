@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: microservices-appset
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/galregev-ops/gitops-example-repo.git
+        revision: main
+        directories:
+          - path: microservices/*/values/*
+  template:
+    metadata:
+      name: "{{path[1]}}-{{path[2]}}"
+    spec:
+      project: microservices
+      source:
+        repoURL: https://github.com/galregev-ops/gitops-example-repo.git
+        targetRevision: main
+        path: "microservices/{{path[1]}}"
+        helm:
+          valueFiles:
+            - "microservices/{{path[1]}}/values/{{path[2]}}.yaml"
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: "{{path[1]}}"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
